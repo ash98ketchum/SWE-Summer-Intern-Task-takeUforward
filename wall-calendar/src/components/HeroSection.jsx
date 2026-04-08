@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import { format } from 'date-fns';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Calendar, Pin } from 'lucide-react';
 
 export default function HeroSection({ theme, currentMonth, onPrev, onNext }) {
@@ -39,28 +38,22 @@ export default function HeroSection({ theme, currentMonth, onPrev, onNext }) {
 
       {/* Content */}
       <div className="relative z-10 h-full flex flex-col justify-end p-6 md:p-8">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentMonth.toISOString()}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.4 }}
+        <div
+          key={currentMonth.toISOString()}
+        >
+          <p
+            className="text-xs font-semibold uppercase tracking-[0.25em] mb-1"
+            style={{ color: theme.accent }}
           >
-            <p
-              className="text-xs font-semibold uppercase tracking-[0.25em] mb-1"
-              style={{ color: theme.accent }}
-            >
-              {theme.tagline}
-            </p>
-            <h1 className="font-display text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
-              {format(currentMonth, 'MMMM')}
-            </h1>
-            <p className="text-xl text-white/70 font-light mt-0.5">
-              {format(currentMonth, 'yyyy')}
-            </p>
-          </motion.div>
-        </AnimatePresence>
+            {theme.tagline}
+          </p>
+          <h1 className="font-display text-4xl md:text-5xl font-bold text-white drop-shadow-lg">
+            {format(currentMonth, 'MMMM')}
+          </h1>
+          <p className="text-xl text-white/70 font-light mt-0.5">
+            {format(currentMonth, 'yyyy')}
+          </p>
+        </div>
 
         {/* Navigation */}
         <div className="flex gap-2 mt-4">
